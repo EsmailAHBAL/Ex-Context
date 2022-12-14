@@ -1,7 +1,9 @@
 import React from 'react'
+import { todoContext } from '../TodoContext';
 
- const Todo =React.memo(({item,getName}) =>{
-   const C_F = ()=> getName(item.name)
+ const Todo =React.memo(({item}) =>{
+  const {RemoveItem} = React.useContext(todoContext)
+  const toConfirm = () => RemoveItem(item.name)
    console.log(`Rendering` + item.name);
   return (
     <div className='flex flex-row justify-around px-5 '>
@@ -11,7 +13,7 @@ import React from 'react'
      </div>
    
     <label className="Grudge-forgiven">
-          <input type="checkbox" checked={item.confirmed} onChange={C_F} />{' '}
+          <input type="checkbox" checked={item.confirmed} onChange={toConfirm} />{' '}
           ✔ 
         </label>
     </div>

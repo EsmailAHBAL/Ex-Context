@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { todoContext } from "../TodoContext";
 
- const NewTodo = React.memo( ({onSubmit}) => {
+ const NewTodo = React.memo( () => {
+  const {addingNewItem} = React.useContext(todoContext)
   console.log('new Todo Rendering');
   const [name,setName] = useState('')
   const [todo,setTodo] = useState('')
   const handlingChange = (e) => {
     e.preventDefault()
-    onSubmit({name,todo})
+    addingNewItem({name,todo})
   }
 
 return (
